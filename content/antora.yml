@@ -1,6 +1,6 @@
 name: modules
-title: Tony antora title
-version: master
+title: Lab guide
+version: stable
 nav:
   - modules/ROOT/nav.adoc
 

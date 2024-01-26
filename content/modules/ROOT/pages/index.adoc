@@ -1,4 +1,6 @@
-= {lab_name}
+= Cloud Native Robotz Hackathon
+
+image::cloud-native-robotz-hackathon-logo.png[]
 
 The `lab_name` var, known as an asciidoc attribute, above was set in `./content/antora.yml` and can be used to set the lab_name or title of your content.
 You are both free to change its value and if you prefer to use a different var name, you can change the value of `lab_name`, for example to `title` in `./content/antora.yml` and then reference it in your content as `\{title}`.
@@ -47,5 +49,5 @@ CONTAINER ID  IMAGE                        COMMAND           CREATED      STATUS
 
 === Lab Access
 
-The terminal window to your right is *already* logged into the lab environment as the `{ssh_user}` user via `ssh`. 
+The terminal window to your right is *already* logged into the lab environment as the `{ssh_user}` user via `ssh`.
 All steps of this lab are to be completed as the `{ssh_user}` user.

@@ -1,6 +1,6 @@
 ---
 site:
-  title: Showroom Template Demo
+  title: Cloud Native Robotz Hackathon
   url: https://redhat-scholars.github.io/course-template
   start_page: modules::index.adoc
 
