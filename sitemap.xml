@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://redhat-scholars.github.io/course-template/modules/stable/index.html</loc>
-<lastmod>2024-07-03T13:59:38.517Z</lastmod>
+<loc>https://redhat-scholars.github.io/course-template/modules/stable/data-science.html</loc>
+<lastmod>2024-07-03T16:50:03.635Z</lastmod>
 </url>
 <url>
-<loc>https://redhat-scholars.github.io/course-template/modules/stable/module-01.html</loc>
-<lastmod>2024-07-03T13:59:38.517Z</lastmod>
+<loc>https://redhat-scholars.github.io/course-template/modules/stable/index.html</loc>
+<lastmod>2024-07-03T16:50:03.635Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/course-template/modules/stable/module-02.html</loc>
-<lastmod>2024-07-03T13:59:38.517Z</lastmod>
+<lastmod>2024-07-03T16:50:03.635Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/course-template/modules/stable/module-03.html</loc>
-<lastmod>2024-07-03T13:59:38.517Z</lastmod>
+<lastmod>2024-07-03T16:50:03.635Z</lastmod>
 </url>
 </urlset>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Env discover :: Cloud Native Robotz Hackathon</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/course-template/modules/stable/data-science.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="module-02.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://demo.redhat.com" target="_blank">
+        <img src="../../_/img/rhdp-logo.svg" height="35px" alt="Red Hat Demo Platform">
+      </a>
+      <a class="navbar-item" href="https://redhat-scholars.github.io/course-template">Cloud Native Robotz Hackathon</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Help</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" target="_blank" href="https://redhat.service-now.com/help?id=sc_cat_item&sys_id=00c0316a1bf39450e43942a7bc4bcbd1">Open Support Case</a>
+            <a class="navbar-item" target="_blank" href="https://rhdp.statuspage.io/">Status Page</a>
+            <a class="navbar-item" target="_blank" href="https://demo.redhat.com/support">Solution Support: Service Level</a>
+            <a class="navbar-item" target="_blank" href="https://content.redhat.com/us/en/product/cross-portfolio-initiatives/rhdp.html">Learn more</a>
+            <a class="navbar-item" target="_blank" href="https://videos.learning.redhat.com/channel/RHPDS%2B-%2BRed%2BHat%2BProduct%2Band%2BPortfolio%2BDemo%2BSystem/277722533">How to videos</a>
+          </div>
+        </div>
+        <a class="navbar-item" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfwGW7ql2lDfaLDpg4Bgj_puFEVsM0El6-Nz8fyH48RnGLDrA/viewform">Feedback</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="modules" data-version="stable">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">Lab guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="data-science.html">0. Data Science</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="module-02.html">1. RPM Native Container</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="module-02.html#repositories">Repositories</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="module-02.html#software">Software</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="module-03.html">2. GitHub Sourced Container</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="module-03.html#prerequisites">Install Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="module-03.html#container">Enable Container</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Lab guide</span>
+    <span class="version">stable</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Lab guide</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">stable</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Lab guide</a></li>
+    <li><a href="data-science.html">0. Data Science</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/cloud-native-robotz-hackathon/lab-guide/edit/main/content/modules/ROOT/pages/data-science.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Env discover</h1>
+<div class="sect1">
+<h2 id="_instantiate_workbench"><a class="anchor" href="#_instantiate_workbench"></a>Instantiate Workbench</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The demo content includes a number of usecases, we&#8217;ll use the object detection scenario.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login into the <a href="https://console-openshift-console.apps.example.com">OpenShift Console</a> with username: team-1 and password : secret-password</p>
+</li>
+<li>
+<p>Click on the top right menu with the squares and select <strong>OpenShift AI</strong> to go the the <strong>OpenShift AI Dashboard</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/rhoai-menu.png" alt="rhoai menu">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login with the same credentials as before</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The is the main Console where all DataScience related projects and assets are managed</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the left menu click on <strong>Data Science Projects</strong> to see all available Data Science Projects</p>
+</li>
+<li>
+<p>A project has already been prepared for you to work in</p>
+</li>
+<li>
+<p>Click on the project <code>team-1-ai</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Our model training will run in a Pipeline, doing all the heavy lifting of training etc. The prepare our project for pipelines we need to create a <strong>Pipeline Server</strong> :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Create a pipeline server</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/pipeline-server.png" alt="pipeline server">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Existing data connection : <code>model-store-pipeline</code></p>
+</li>
+<li>
+<p>Click <strong>Configure</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As a true DataScientist we want to use JuypterLab to work on our prediction model. Let&#8217;s create a new JupyterLab Workbench in our project:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Create Workbench</strong></p>
+</li>
+<li>
+<p>Enter these fields :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Name : <code>fedora-detection</code></p>
+</li>
+<li>
+<p>Image selection: <code>Object Detection`</code></p>
+</li>
+<li>
+<p>Cluster storage</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create new persistent storage:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Name : <code>development`</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Data connections</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use a data connection</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use existing data connection: <code>model-store</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click Create Workbench</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Wait until the <strong>Status</strong> of the Workbench is shown as running</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on the <code>fedora-detection</code> Workbench link to open the JuypterLab Workbench</p>
+</li>
+<li>
+<p>Login with you OpenShift credentials</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now we are going to clone some JuypterNotebooks to get started with our ObjectDetection project:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the menu on the left click on the Git icon</p>
+</li>
+<li>
+<p>Click on <strong>Clone a Repository</strong></p>
+</li>
+<li>
+<p>Enter the Git Url to the notebooks Repo that has been prepared for you `https://gitea.apps.example.com/team-1/object-detection-notebooks.git</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Clone</strong></p>
+</li>
+<li>
+<p>On the left side click on the Folder icon and navigate to <code>object-detection-notebooks`</code> directory</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Next we will train a model on the basis of a Yolov4 Image Detection model to detect Fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 store. In the format we can use it to provide an inferencing service to our app.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to ´model-training´</p>
+</li>
+<li>
+<p>Open <code>model-training-cpu.pipeline</code></p>
+</li>
+<li>
+<p>On the top menu on left click on the play icon
+-</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>reate and run the model training as a pipeline with Elyra and Data Science Pipelines. The training pipeline uses images from the Open Images Dataset V7. (<a href="https://storage.googleapis.com/openimages/web/index.html" class="bare">https://storage.googleapis.com/openimages/web/index.html</a>)
+We&#8217;ll use three classes in our training: Ball, Tennis ball and Fedora. Access the image database website, click Explore, search for the classes and have a look at the images. To configure the pipeline, open the file configuration.yaml in the Jupyter Notebook and replace the class names with the classes listed above. Hit Ctrl-s to save.
+In the Jupyter Notebook navigate to the os-mlops/notebooks/object-detection_example/model-training folder
+Open the appropriate Elyra pipeline, i.e. model-training-gpu.pipeline if you have enabled GPUs in your cluster, else model-training-cpu.pipeline.
+Open configuration.yaml
+Set
+: names: ['Fedora', 'Ball', 'Tennis ball']
+Save the file
+In the Pipeline Editor click Run Pipeline to submit the pipeline to the Data Science Pipelines backend.
+Track the pipeline progress in the RHODS dashboard: Data Science Pipelines&#8594;Runs&#8594;Triggered
+Once the pipeline run has completed, check for the trained model in the object-detection bucket in Minio using the Object Browser.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_serving"><a class="anchor" href="#_model_serving"></a>Model Serving</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You now have a trained model for object recognition. To use the model we deploy it into RHODS Model Serving:
+Access the RHODS dashboard, in Data Science Projects choose object-detection
+Under Models and model servers click Deploy model for the appropriate model server, i.e. Triton if you enabled GPUs in your cluster, else OVMS.
+In the form enter
+Project: object-detection
+Model Name: demo-model
+Model framework: ONNX
+Choose Existing data connection: object-detection
+model-latest.onnx as Folder path.</p>
+</div>
+<div class="paragraph">
+<p>Select Deploy
+Wait for the server to start
+Copy the Inference endpoint URL
+Open the online-scoring notebook.
+Paste the inference endpoint URL into the placeholder of the prediction_url variable.
+Make sure the class labels are
+ ['Fedora', 'Ball', 'Tennis ball']
+Run the full notebook (The with the two Play Icons)
+You will see the identified cluster</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_testing"><a class="anchor" href="#_model_testing"></a>Model Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open the Notebook object-detection-example/model-training/os-mlops/notebooks/object-detection-example/online-scoring.ipynb
+Run the entire Notebook (Double Play Icon)
+Upload an Image of your own sample-images
+Reference it in image_path = './sample-images/&lt;Your Image&gt;
+And run the testing again</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html" class="query-params-link">Lab guide</a></span>
+  <span class="next"><a href="module-02.html" class="query-params-link">1. RPM Native Container</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
