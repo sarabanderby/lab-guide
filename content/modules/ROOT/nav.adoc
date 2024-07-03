@@ -1,5 +1,5 @@
 
-* xref:module-01.adoc[0. Env. disc]
+* xref:data-science.adoc[0. Data Science]
 
 * xref:module-02.adoc[1. RPM Native Container]
 ** xref:module-02.adoc#repositories[Repositories]
