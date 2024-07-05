@@ -1,0 +1,69 @@
+= Development
+
+== Start Coding in DevSpaces
+
+To develop our flashy AI enhanced app we will use **OpenShift DevSpaces**, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop  
+
+* In the OpenShift Console on the top right click on the square icon and select **Red Hat OpenShift Dev Spaces**
+* Login with your OpenShift credentials  
+* Select **Create Workspace**
+* Enter **Git Repo URL** : {gitea_console_url}/{user}/starter-app-python/raw/branch/master/devfile.yaml
+
+TIP: You can find this url manually by opening to your Gitea {gitea_console_url}, navigate to the repo `starter-app-python` and the `devfile.yaml``, then click on Originalversion / Raw and
+copy the URL
+
+* Click on **Create and Open** 
+
+Wait for the Workspace to depploy (this may take some time). Once you Workspace is up an running you should see a view that should look familiar if you have user VSCode.
+
+We have prepared some sample code that you can use to quickly get started with your app. We will clone the repo next. 
+
+* On the left side click on **Clone Repository**
+* In the form at the top enter git url `{gitea_console_url}/{user}/starter-app-python.git` 
+Clone to /projects
+Install requirements with pip
+Open a Terminal by clicking in “Hamburger Icon”
+Install the required python packages
+pip install -r requirements.txt
+export PYTHONDONTWRITEBYTECODE=1
+export PATH=$PATH:/home/user/.local/bin
+Start the app
+gunicorn -b 0.0.0.0:8080 app --reload
+Click on hint in the bottom right corner to expose the route
+Click on Open  
+
+A Tab with the web interface of the app will open
+Make sure you are on http:// if the page does not open
+Curl Example: 
+
+
+curl -X POST -v http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/backward/10?user_key=terminator
+
+# To get an Image:
+curl -X GET -v http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/camera?user_key=terminator | base64 -d > image.jpg
+
+Edit the config.yaml to  
+add your inferencing endpoint
+Your robot endpoint and token will be given to you
+
+
+ROBOT_API = 'http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot'
+API_TOKEN = '' # terminator or abcwarrior
+INFERENCING_API = '' # Your cluster specific model serving url
+
+
+In DevSpaces open app.py and look at the commented out code samples
+Start to code
+Call the run function by clicking on the start button on the app website
+
+Robot API
+POST /forward/<length>
+Vorwärts fahren um length
+POST /backward/<length> 
+Rückwärts fahren um length
+POST /left/<degrees>
+Drehen nach links um degrees
+POST /right/<degrees>
+Drehen nach rechts um degrees
+GET /distance
+Ultraschallsensor : Entfernung zum nächsten Objekt in mm 
