@@ -17,18 +17,27 @@ copy the URL
 Wait for the Workspace to depploy (this may take some time). Once you Workspace is up an running you should see a view that should look familiar if you have user VSCode.
 
 We have prepared some sample code that you can use to quickly get started with your app. We will clone the repo next. 
-
+* If you see a Popup asking you to trust the authors, accept this
 * On the left side click on **Clone Repository**
-* In the form at the top enter git url `{gitea_console_url}/{user}/starter-app-python.git` 
-Clone to /projects
-Install requirements with pip
-Open a Terminal by clicking in “Hamburger Icon”
-Install the required python packages
+* In the form at the top enter git url `{gitea_console_url}/{user}/starter-app-python.git and hit **Enter**
+* In the next form keep the path as is ( /projects ) and hit **Enter again**
+
+Now we will need to install a couple of dependecies with pip
+
+* Open a Terminal by clicking in “Hamburger Icon” > **Terminal** > **New Terminal** in the top left
+
+In the terminal enter
+
+[,bash]
+----
+cd starter-project-python
 pip install -r requirements.txt
 export PYTHONDONTWRITEBYTECODE=1
 export PATH=$PATH:/home/user/.local/bin
-Start the app
 gunicorn -b 0.0.0.0:8080 app --reload
+----
+
+
 Click on hint in the bottom right corner to expose the route
 Click on Open  
 
