@@ -1,5 +1,7 @@
 
 * xref:data-science.adoc[0. Data Science]
-
 * xref:development.adoc[1. Development]
+* xref:integration.adoc[2. Integration]
+* xref:edge-deveops.adoc[3. Edge DevOps]
+* xref:final-run.adoc[4. Data Science]
 
