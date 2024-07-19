@@ -29,7 +29,7 @@ As a true DataScientist we want to use JuypterLab to work on our prediction mode
 **** Name : `fedora-detection`
 ** Data connections
 *** Use a data connection
-**** Use existing data connection: `model-store`
+**** Use existing data connection: `workbench-bucket`
 * Click Create Workbench
 
 Wait until the **Status** of the Workbench is shown as running
