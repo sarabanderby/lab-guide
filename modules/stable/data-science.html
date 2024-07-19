@@ -152,6 +152,11 @@
 </li>
 </ul>
 </div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">team-1-ai</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>As a true DataScientist we want to use JuypterLab to work on our prediction model. Let&#8217;s create a new JupyterLab Workbench in our project:</p>
 </div>
@@ -437,6 +442,30 @@ You can test this with different images in the sample-images folder. You can eve
 <div class="paragraph">
 <p>Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Use the two values (prediction_url` and <code>token</code>) in your app in the next chapter.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_container_image_with_the_model"><a class="anchor" href="#_build_container_image_with_the_model"></a>Build container image with the model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is important for the robot deployment later.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login into the <a href="https://console-openshift-console.apps.example.com">OpenShift Console</a> with username: team-1 and password : secret-password</p>
+</li>
+<li>
+<p>Go to (<a href="https://console-openshift-console.apps.example.comk8s/ns/team-1-ai/tekton.dev" class="bare">https://console-openshift-console.apps.example.comk8s/ns/team-1-ai/tekton.dev</a><sub>v1</sub>Pipeline/model-image-build)[Pipelines]</p>
+</li>
+<li>
+<p>Select <code>modile-image-build</code></p>
+</li>
+<li>
+<p>Start the pipeline</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
