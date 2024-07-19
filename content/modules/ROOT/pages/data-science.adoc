@@ -1,16 +1,21 @@
 
 = Data Science
 
+As Data Scientist our task will be to give our robot undestanding of waht a red fedora looks like an how to identify one. You will train an existing object dections model (Yolo) on a set of images depicting fedoras. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientist to work with the tools they are used to. 
+
 == Instantiate Workbench
 
-The demo content includes a number of usecases, we'll use the object detection scenario.
+Let's login into **OpenShift AI**
 
-- Login into the {openshift_console_url}[OpenShift Console] with username: {user} and password : {password}
-- Click on the top right menu with the squares and select **OpenShift AI** to go the the **OpenShift AI Dashboard**
+* Login into the {openshift_console_url}[OpenShift Console] with: 
+** username: {user}
+** password : {password}
+* Click on the top right menu with the squares and select **OpenShift AI** to go the the **OpenShift AI Dashboard**
 
 image::rhoai-menu.png[]
 
-- Login with the same credentials as before
+* Click on **Login with OpenShift**
+* Login with the same credentials as before 
 
 The is the main Console where all DataScience related projects and assets are managed
 
@@ -29,7 +34,13 @@ As a true DataScientist we want to use JuypterLab to work on our prediction mode
 
 * Click on **Create Workbench**
 * Enter these fields :
-** Name : `fedora-detection`
+** Name :
++
+[source,bash,role=execute]
+----
+fedora-detection
+----
+
 ** Image selection: `Object Detection`
 ** Cluster storage
 *** Create new persistent storage:
@@ -37,59 +48,85 @@ As a true DataScientist we want to use JuypterLab to work on our prediction mode
 ** Data connections
 *** Use a data connection
 **** Use existing data connection: `workbench-bucket`
-* Click Create Workbench
+* Click **Create Workbench**
 
 Wait until the **Status** of the Workbench is shown as running
+image::workbench-running.png[]
 
-* Click on the `fedora-detection` Workbench link to open the JuypterLab Workbench
-* Login with you OpenShift credentials
+* Click on the **Open** link, next to `fedora-detection` Workbench to open the JuypterLab Workbench
+* Login with you OpenShift credentials and allow selected permissions
 
 Now we are going to clone some JuypterNotebooks to get started with our ObjectDetection project:
 
 * In the menu on the left click on the Git icon
 * Click on **Clone a Repository**
-* Enter the Git Url to the notebooks Repo that has been prepared for you `{gitea_console_url}/{user}/object-detection-notebooks.git``
-- Click on **Clone**
-- On the left side click on the Folder icon and navigate to `object-detection-notebooks`` directory
+* Enter the Git Url to the notebooks Repo that has been prepared for you :
++
+[source,bash,role=execute,subs="attributes"]
+----
+{gitea_console_url}/{user}/object-detection-notebooks.git
+----
 
-Next we will train a model on the basis of a Yolo4 Image Detection model to detect Fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 store. In the format we can use it to provide an inferencing service to our app.
+* Click on **Clone**
+* On the left side in the menu click on the **Folder** icon and navigate to `object-detection-notebooks` directory
 
-- Navigate to ´model-training´
+Next we will train a model on the basis of a Yolo4 Image Detection model to detect Fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of **OpenShift AI** and serve to our application.
+
+* Navigate to the directory ´object-detection-notebooks/model-training´
 - Open `model-training-cpu.pipeline`
 
-Have a look at the pipeline steps: We are downloading sample images, preparing the labels and training sets, running the training, converting the model format to onnx and then uploading it to an S3 bucket
+Have a look at the pipeline steps: We are downloading sample images, preparing the labels and training sets, running the training, converting the model format to onnx and then uploading it to an S3 bucket.
 
-The pipeline can be configured to download and train on image obeject classes (e.g. Fedoras). To configure these classes open the file `configuration.yaml` You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect some objects that we might have
+The pipeline can be configured to download and train on image object classes (e.g. Fedoras) from the frm the OpenImages website. To configure these classes open the file `configuration.yaml`. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.
 
 * Change the `names` array to look like this
-[,yaml]
+
+[source,yaml,role=execute,subs="attributes"]
 ----
 names: ['Fedora', 'Ball', 'Tennis ball',]
 ----
-These Image classes are mapped to the class numbers 0, 1, 2 accordingly
 
-* Now back in the pipelines, on the top menu on left click on the play icon
+These image classes are mapped to the class numbers 0, 1, 2 accordingly.
+
+* Now back in the `model-training-pipeline`, on the top menu on the left click on the play icon
+
+image::start-pipeline.png[]
+
 * Keep the default settings and click on **OK**
 
 This will submit the pipeline to OpenShift to run the training
 
-* Switch to the RHOAI Tab in your browser
-* Expand the **pipelines** section of your DataScience Project and you will see the Pipeline instance
-* Click on the pipeline name and the pipeline view will open showing you the how the steps are excecuting
+* Switch to the *OpenShift AI* tab in your browser
+* Expand the **Pipelines** section of your DataScience Project and you will see the Pipeline instance
+* Click on **View runs** 
+
+image::view-runs.png[]
+
+* Click on the currently running pipeline
+
+This will show the running steps of the pipeline
+
+image::running-pipeline.png[]
 
 Now is a good time to grab some coffee.
 
-Once the pipeline has run successfully the final model named `latest-version.onnx` will be in your S3 bucket.
+Once the pipeline has run successfully the final model named `latest-version.onnx` will saved be in your S3 bucket.
 
 == Model Serving
-You now have a trained model for object recognition. To use the model we deploy it into RHOAI Model Serving:
+You now have a trained model for object recognition. To use the model we will deploy it into **OpenShift AI** Model Serving.
 
 === Model Runtime
 
 First we need to configue a model server:
-* Access the Data Science dashboard and make sure you have selected your project again
-*  Under **Models and model servers** click on **Add model server**
-* Model server name : `ovms`
+
+* Click on **DataScience Projects** in the main menu on the left and make sure you have selected your project again
+*  Under the section **Models and model servers** click on **Add model server**
+* Model server name : 
++
+[source,bash,role=execute,subs="attributes"]
+----
+ovms
+----
 * Serving runtime : `OpenVINO Model Server`
 * Make deployed models available ... : `Check``
 * Require token authentication : `Check``
@@ -101,35 +138,46 @@ image::serving-runtime.png[]
 
 === Deploy Model
 
-* click **Deploy model** next to your just created model server
+* Click **Deploy model** next to your just created model server
 * In the form enter
-** Model Name: `fedora-detection-service``
-** Model framework (name-version): `o nnx-1``
+** Model Name: 
++
+[source,bash,role=execute,subs="attributes"]
+----
+fedora-detection-service
+----
+** Model framework (name-version): `o nnx-1`
 ** Existing data connection: `workbench-bucket`
-** Path: `models/model-latest.onnx``
+** Path: 
++
+[source,bash,role=execute,subs="attributes"]
+----
+models/model-latest.onnx
+----
 ** Click **Deploy**
 
 Wait for the server to start
 
 === Model Testing
 
-* Copy the Inference endpoint URL
+* Copy the inference endpoint URL that is published through a OpenShift Route
 
 image::copy-inference-url.png[]
 * Copy the token of the endpoint
 
 image::copy-token.png[]
 
-* Back in your JupyterLab open the `online-scoring.ipynb` notebook
+* Back in your JupyterLab Workbench open the `online-scoring.ipynb` notebook
 * Look for cell [3] and paste the inference endpoint URL and the token into the placeholders of the `prediction_url` and `token` variables
 
-* Run the full notebook (The button with the two play Icons)
+* Run the full notebook (The button with the two play icons in the top menu)
+* Confirm to **Restart the Kernel**
 
 You will see the identified classes with bounding boxes and confidence score
 
-TIP: You can test this with different images in the sample-images folder. You can even upload your own images. Just make sure you adjust the image name in cell [2]
+TIP: You can test this with different images in the sample-images folder. You can even upload your own images. Take a picture with a camera from your laptop or smartphone and upload it into the `sample_images` folder.  Make sure you adjust the image name in cell [2] before running the notebook again.
 
-Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Use the two values (prediction_url` and `token`) in your app in the next chapter.
+Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.  
 
 
 
