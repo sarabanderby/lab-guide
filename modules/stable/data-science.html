@@ -108,16 +108,33 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Data Science</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>As Data Scientist our task will be to give our robot undestanding of waht a red fedora looks like an how to identify one. You will train an existing object dections model (Yolo) on a set of images depicting fedoras. To achieve this we will use <strong>OpenShift AI</strong>, an extension to OpenShift that provides a platform for Data Scientist to work with the tools they are used to.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_instantiate_workbench"><a class="anchor" href="#_instantiate_workbench"></a>Instantiate Workbench</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The demo content includes a number of usecases, we&#8217;ll use the object detection scenario.</p>
+<p>Let&#8217;s login into <strong>OpenShift AI</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Login into the <a href="https://console-openshift-console.apps.example.com">OpenShift Console</a> with username: team-1 and password : secret-password</p>
+<p>Login into the <a href="https://console-openshift-console.apps.example.com">OpenShift Console</a> with:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>username: team-1</p>
+</li>
+<li>
+<p>password : secret-password</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Click on the top right menu with the squares and select <strong>OpenShift AI</strong> to go the the <strong>OpenShift AI Dashboard</strong></p>
@@ -131,6 +148,9 @@
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>Click on <strong>Login with OpenShift</strong></p>
+</li>
 <li>
 <p>Login with the same credentials as before</p>
 </li>
@@ -170,7 +190,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Name : <code>fedora-detection</code></p>
+<p>Name :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">fedora-detection</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>Image selection: <code>Object Detection</code></p>
@@ -213,20 +238,21 @@
 </div>
 </li>
 <li>
-<p>Click Create Workbench</p>
+<p>Click <strong>Create Workbench</strong></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Wait until the <strong>Status</strong> of the Workbench is shown as running</p>
+<p>Wait until the <strong>Status</strong> of the Workbench is shown as running
+image::workbench-running.png[]</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Click on the <code>fedora-detection</code> Workbench link to open the JuypterLab Workbench</p>
+<p>Click on the <strong>Open</strong> link, next to <code>fedora-detection</code> Workbench to open the JuypterLab Workbench</p>
 </li>
 <li>
-<p>Login with you OpenShift credentials</p>
+<p>Login with you OpenShift credentials and allow selected permissions</p>
 </li>
 </ul>
 </div>
@@ -242,38 +268,43 @@
 <p>Click on <strong>Clone a Repository</strong></p>
 </li>
 <li>
-<p>Enter the Git Url to the notebooks Repo that has been prepared for you <code><a href="https://gitea.apps.example.com/team-1/object-detection-notebooks.git`" class="bare">https://gitea.apps.example.com/team-1/object-detection-notebooks.git`</a></code></p>
-<div class="ulist">
-<ul>
+<p>Enter the Git Url to the notebooks Repo that has been prepared for you :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">https://gitea.apps.example.com/team-1/object-detection-notebooks.git</code></pre>
+</div>
+</div>
+</li>
 <li>
 <p>Click on <strong>Clone</strong></p>
 </li>
 <li>
-<p>On the left side click on the Folder icon and navigate to <code>object-detection-notebooks`</code> directory</p>
-</li>
-</ul>
-</div>
+<p>On the left side in the menu click on the <strong>Folder</strong> icon and navigate to <code>object-detection-notebooks</code> directory</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Next we will train a model on the basis of a Yolo4 Image Detection model to detect Fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 store. In the format we can use it to provide an inferencing service to our app.</p>
+<p>Next we will train a model on the basis of a Yolo4 Image Detection model to detect Fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of <strong>OpenShift AI</strong> and serve to our application.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Navigate to ´model-training´</p>
-</li>
+<p>Navigate to the directory ´object-detection-notebooks/model-training´</p>
+<div class="ulist">
+<ul>
 <li>
 <p>Open <code>model-training-cpu.pipeline</code></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Have a look at the pipeline steps: We are downloading sample images, preparing the labels and training sets, running the training, converting the model format to onnx and then uploading it to an S3 bucket</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The pipeline can be configured to download and train on image obeject classes (e.g. Fedoras). To configure these classes open the file <code>configuration.yaml</code> You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect some objects that we might have</p>
+<p>Have a look at the pipeline steps: We are downloading sample images, preparing the labels and training sets, running the training, converting the model format to onnx and then uploading it to an S3 bucket.</p>
+</div>
+<div class="paragraph">
+<p>The pipeline can be configured to download and train on image object classes (e.g. Fedoras) from the frm the OpenImages website. To configure these classes open the file <code>configuration.yaml</code>. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -282,19 +313,28 @@
 </li>
 </ul>
 </div>
-<div class="listingblock">
+<div class="listingblock execute">
 <div class="content">
-<pre>names: ['Fedora', 'Ball', 'Tennis ball',]</pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">names: ['Fedora', 'Ball', 'Tennis ball',]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>These Image classes are mapped to the class numbers 0, 1, 2 accordingly</p>
+<p>These image classes are mapped to the class numbers 0, 1, 2 accordingly.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Now back in the pipelines, on the top menu on left click on the play icon</p>
+<p>Now back in the <code>model-training-pipeline</code>, on the top menu on the left click on the play icon</p>
 </li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/start-pipeline.png" alt="start pipeline">
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Keep the default settings and click on <strong>OK</strong></p>
 </li>
@@ -306,21 +346,41 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Switch to the RHOAI Tab in your browser</p>
+<p>Switch to the <strong>OpenShift AI</strong> tab in your browser</p>
 </li>
 <li>
-<p>Expand the <strong>pipelines</strong> section of your DataScience Project and you will see the Pipeline instance</p>
+<p>Expand the <strong>Pipelines</strong> section of your DataScience Project and you will see the Pipeline instance</p>
 </li>
 <li>
-<p>Click on the pipeline name and the pipeline view will open showing you the how the steps are excecuting</p>
+<p>Click on <strong>View runs</strong></p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/view-runs.png" alt="view runs">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on the currently running pipeline</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will show the running steps of the pipeline</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/running-pipeline.png" alt="running pipeline">
+</div>
 </div>
 <div class="paragraph">
 <p>Now is a good time to grab some coffee.</p>
 </div>
 <div class="paragraph">
-<p>Once the pipeline has run successfully the final model named <code>latest-version.onnx</code> will be in your S3 bucket.</p>
+<p>Once the pipeline has run successfully the final model named <code>latest-version.onnx</code> will saved be in your S3 bucket.</p>
 </div>
 </div>
 </div>
@@ -328,21 +388,52 @@
 <h2 id="_model_serving"><a class="anchor" href="#_model_serving"></a>Model Serving</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You now have a trained model for object recognition. To use the model we deploy it into RHOAI Model Serving:</p>
+<p>You now have a trained model for object recognition. To use the model we will deploy it into <strong>OpenShift AI</strong> Model Serving.</p>
 </div>
 <div class="sect2">
 <h3 id="_model_runtime"><a class="anchor" href="#_model_runtime"></a>Model Runtime</h3>
 <div class="paragraph">
-<p>First we need to configue a model server:
-* Access the Data Science dashboard and make sure you have selected your project again
-*  Under <strong>Models and model servers</strong> click on <strong>Add model server</strong>
-* Model server name : <code>ovms</code>
-* Serving runtime : <code>OpenVINO Model Server</code>
-* Make deployed models available &#8230;&#8203; : <code>Check<code>
-* Require token authentication : `Check</code>
-<strong> Service account name : `default-name</code>
-* Keep the rest of the settings as is
-* Click </strong>Add**</p>
+<p>First we need to configue a model server:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>DataScience Projects</strong> in the main menu on the left and make sure you have selected your project again</p>
+</li>
+<li>
+<p>Under the section <strong>Models and model servers</strong> click on <strong>Add model server</strong></p>
+</li>
+<li>
+<p>Model server name :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ovms</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Serving runtime : <code>OpenVINO Model Server</code></p>
+</li>
+<li>
+<p>Make deployed models available &#8230;&#8203; : <code>Check`</code></p>
+</li>
+<li>
+<p>Require token authentication : <code>Check`</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Service account name : <code>default-name</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Keep the rest of the settings as is</p>
+</li>
+<li>
+<p>Click <strong>Add</strong></p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -355,23 +446,33 @@
 <div class="ulist">
 <ul>
 <li>
-<p>click <strong>Deploy model</strong> next to your just created model server</p>
+<p>Click <strong>Deploy model</strong> next to your just created model server</p>
 </li>
 <li>
 <p>In the form enter</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Model Name: <code>fedora-detection-service`</code></p>
+<p>Model Name:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">fedora-detection-service</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Model framework (name-version): <code>o nnx-1`</code></p>
+<p>Model framework (name-version): <code>o nnx-1</code></p>
 </li>
 <li>
 <p>Existing data connection: <code>workbench-bucket</code></p>
 </li>
 <li>
-<p>Path: <code>models/model-latest.onnx`</code></p>
+<p>Path:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">models/model-latest.onnx</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>Click <strong>Deploy</strong></p>
@@ -390,7 +491,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Copy the Inference endpoint URL</p>
+<p>Copy the inference endpoint URL that is published through a OpenShift Route</p>
 </li>
 </ul>
 </div>
@@ -414,13 +515,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Back in your JupyterLab open the <code>online-scoring.ipynb</code> notebook</p>
+<p>Back in your JupyterLab Workbench open the <code>online-scoring.ipynb</code> notebook</p>
 </li>
 <li>
 <p>Look for cell [3] and paste the inference endpoint URL and the token into the placeholders of the <code>prediction_url</code> and <code>token</code> variables</p>
 </li>
 <li>
-<p>Run the full notebook (The button with the two play Icons)</p>
+<p>Run the full notebook (The button with the two play icons in the top menu)</p>
+</li>
+<li>
+<p>Confirm to <strong>Restart the Kernel</strong></p>
 </li>
 </ul>
 </div>
@@ -434,13 +538,13 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can test this with different images in the sample-images folder. You can even upload your own images. Just make sure you adjust the image name in cell [2]
+You can test this with different images in the sample-images folder. You can even upload your own images. Take a picture with a camera from your laptop or smartphone and upload it into the <code>sample_images</code> folder.  Make sure you adjust the image name in cell [2] before running the notebook again.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Use the two values (prediction_url` and <code>token</code>) in your app in the next chapter.</p>
+<p>Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
 </div>
 </div>
 </div>
