@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Edge DevOps :: Cloud Native Robotz Hackathon</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/modules/stable/edge-devops.html">
+    <link rel="prev" href="integration.html">
+    <link rel="next" href="final-run.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -61,11 +63,11 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="integration.html">2. Integration</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#edge-deveops.adoc">3. Edge DevOps</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="edge-devops.html">3. Edge DevOps</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="final-run.html">4. Data Science</a>
+    <a class="nav-link" href="final-run.html">4. Final Run</a>
   </li>
 </ul>
   </li>
@@ -98,7 +100,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Lab guide</a></li>
-    <li><a href="edge-devops.html">Edge DevOps</a></li>
+    <li><a href="edge-devops.html">3. Edge DevOps</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/cloud-native-robotz-hackathon/lab-guide/edit/main/content/modules/ROOT/pages/edge-devops.adoc">Edit this Page</a></div>
@@ -106,7 +108,50 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Edge DevOps</h1>
+<div class="sect1">
+<h2 id="_todo_architecture_overview"><a class="anchor" href="#_todo_architecture_overview"></a>ToDo: Architecture overview</h2>
+<div class="sectionbody">
 
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_container_image_with_the_model"><a class="anchor" href="#_build_container_image_with_the_model"></a>Build container image with the model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is important for the robot deployment later.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login into the <a href="https://console-openshift-console.apps.example.com" target="_blank" rel="noopener">OpenShift Console</a> with username: team-1 and password : secret-password</p>
+</li>
+<li>
+<p>Go to <a href="https://console-openshift-console.apps.example.comk8s/ns/team-1-ai/tekton.dev" class="bare">https://console-openshift-console.apps.example.comk8s/ns/team-1-ai/tekton.dev</a><sub>v1</sub>Pipeline/model-image-build["Pipelines",window=_blank]</p>
+</li>
+<li>
+<p>Click on Actions &#8594; Start</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/edge-devops/start-pipeline.png" alt="start pipeline">
+</div>
+</div>
+</li>
+<li>
+<p>Click on Start to start the pipeline</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/edge-devops/start-pipeline-2.png" alt="start pipeline 2">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="integration.html" class="query-params-link">2. Integration</a></span>
+  <span class="next"><a href="final-run.html" class="query-params-link">4. Final Run</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
