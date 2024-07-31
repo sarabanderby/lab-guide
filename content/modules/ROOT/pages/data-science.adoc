@@ -179,14 +179,3 @@ TIP: You can test this with different images in the sample-images folder. You ca
 
 Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.  
 
-
-
-==  Build container image with the model
-
-This is important for the robot deployment later.
-
-- Login into the {openshift_console_url}[OpenShift Console] with username: {user} and password : {password}
-
-- Go to ({openshift_console_url}k8s/ns/{user}-ai/tekton.dev~v1~Pipeline/model-image-build)[Pipelines]
-- Select `modile-image-build`
-- Start the pipeline

@@ -1,1 +1,22 @@
 = Edge DevOps
+
+
+== ToDo: Architecture overview
+
+
+
+== Build container image with the model
+
+This is important for the robot deployment later.
+
+- Login into the {openshift_console_url}["OpenShift Console",window=_blank] with username: {user} and password : {password}
+
+- Go to {openshift_console_url}k8s/ns/{user}-ai/tekton.dev~v1~Pipeline/model-image-build["Pipelines",window=_blank]
+
+- Click on Actions -> Start
++
+image::edge-devops/start-pipeline.png[]  
+
+- Click on Start to start the pipeline
++
+image::edge-devops/start-pipeline-2.png[]  
