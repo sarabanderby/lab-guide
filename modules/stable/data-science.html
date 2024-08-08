@@ -172,11 +172,6 @@
 </li>
 </ul>
 </div>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">team-1-ai</code></pre>
-</div>
-</div>
 <div class="paragraph">
 <p>As a true DataScientist we want to use JuypterLab to work on our prediction model. Let&#8217;s create a new JupyterLab Workbench in our project:</p>
 </div>
@@ -243,8 +238,12 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Wait until the <strong>Status</strong> of the Workbench is shown as running
-image::workbench-running.png[]</p>
+<p>Wait until the <strong>Status</strong> of the Workbench is shown as running</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/workbench-running.png" alt="workbench running">
+</div>
 </div>
 <div class="ulist">
 <ul>
@@ -257,12 +256,12 @@ image::workbench-running.png[]</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Now we are going to clone some JuypterNotebooks to get started with our ObjectDetection project:</p>
+<p>In JuypterLab we are going to clone some JuypterNotebooks to get started with our ObjectDetection project:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>In the menu on the left click on the Git icon</p>
+<p>In the menu on the left, click on the <strong>Git</strong> icon</p>
 </li>
 <li>
 <p>Click on <strong>Clone a Repository</strong></p>
@@ -279,17 +278,17 @@ image::workbench-running.png[]</p>
 <p>Click on <strong>Clone</strong></p>
 </li>
 <li>
-<p>On the left side in the menu click on the <strong>Folder</strong> icon and navigate to <code>object-detection-notebooks</code> directory</p>
+<p>On the left side in the menu click on the <strong>Folder</strong> icon and navigate to ´object-detection-notebooks´ directory</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Next we will train a model on the basis of a Yolo4 Image Detection model to detect Fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of <strong>OpenShift AI</strong> and serve to our application.</p>
+<p>Next we will train a model on the basis of a Yolo4 Image Detection model to detect Fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of <strong>OpenShift AI</strong> and serve it to our application.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Navigate to the directory ´object-detection-notebooks/model-training´</p>
+<p>In JupyterLab navigate to the directory ´object-detection-notebooks/model-training´</p>
 <div class="ulist">
 <ul>
 <li>
