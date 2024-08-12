@@ -1,2 +1,30 @@
 = Integration
 
+== The Challenge
+
+The task that you are working on will be to enable your robot to identify a red fedora on the floor. Your robot should drive towards the fedora and stop shortly before it.
+
+The basic flow for your app will be:
+
+* retrieving an image
+* sending it the object detection service
+* analyzing the results
+** detected class
+** confidence score
+** coordinates of the bounding boxes in your camera image
+* working with the result to determine where the robot should move to next
+
+== Collaboration
+You will work collaboratively between dev and ml team to gradually optimize the behavior.
+
+Think about these points :
+
+* How can I align the robot towards the fedora with the coordinate information
+* How do I know when to stop the robot
+* How can I optimize the "think" and "react" phases
+* How can I handle corner cases
+
+== Feature Freeze
+While you have time to develop your solution, as in real life projects there will be a "Feature Freeze" where everyting needs to be finished.  You will be given the time of the feature freeze.
+
+Your deliverable will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.

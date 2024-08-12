@@ -1,13 +1,17 @@
 = Edge DevOps
 
+Testing our solution on OpenShift is fun but what we really want is an autonmous robot that can think for itself and find our fedora in the most disconnected of places.
+
+As you read in the last chapter at the "feature freeze" you will have to provide your solution assets in the form of container images.  It is time to move these onto the robot itself.
 
 == ToDo: Architecture overview
 
 
+== Build a container image of the object detection model
 
-== Build container image with the model
+Once we are finished with tuning our object detection model we will package it into a container image to de deployed on the robot.
 
-This is important for the robot deployment later.
+An OpenShift pipeline based on Tekton has been prepared for you
 
 - Login into the {openshift_console_url}["OpenShift Console",window=_blank] with username: {user} and password : {password}
 
@@ -15,8 +19,20 @@ This is important for the robot deployment later.
 
 - Click on Actions -> Start
 +
-image::edge-devops/start-pipeline.png[]  
+image::edge-devops/start-pipeline.png[]
 
 - Click on Start to start the pipeline
 +
-image::edge-devops/start-pipeline-2.png[]  
+image::edge-devops/start-pipeline-2.png[]
+
+== Build a container image of the application
+
+When done with the app we will package in a Container Image as well. A matching pipeline is available as well.
+
+- Login into the {openshift_console_url}["OpenShift Console",window=_blank] with username: {user} and password : {password}
+
+- Go to {openshift_console_url}k8s/ns/{user}-dev/tekton.dev~v1~Pipeline/app-build["Pipelines",window=_blank]
+
+- Click on Actions -> Start
+- Click on Start to start the pipeline
+
