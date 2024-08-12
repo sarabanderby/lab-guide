@@ -109,24 +109,52 @@
 <article class="doc">
 <h1 class="page">Development</h1>
 <div class="sect1">
-<h2 id="_start_coding_in_devspaces"><a class="anchor" href="#_start_coding_in_devspaces"></a>Start Coding in DevSpaces</h2>
+<h2 id="_start_coding_in_dev_spaces"><a class="anchor" href="#_start_coding_in_dev_spaces"></a>Start Coding in Dev Spaces</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To develop our flashy AI enhanced app we will use <strong>OpenShift DevSpaces</strong>, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop</p>
+<p>To develop our flashy AI enhanced app we will use <strong>OpenShift Dev Spaces</strong>, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>In the OpenShift Console on the top right click on the square icon and select <strong>Red Hat OpenShift Dev Spaces</strong></p>
+<p>If you are not already logged into the OpenShift Console, Login in the <a href="https://console-openshift-console.apps.example.com">OpenShift Console</a> with:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>username: team-1</p>
+</li>
+<li>
+<p>password : secret-password</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In the OpenShift Console on the top right, click on the square icon and select <strong>Red Hat OpenShift Dev Spaces</strong></p>
 </li>
 <li>
 <p>Login with your OpenShift credentials</p>
 </li>
 <li>
-<p>Select <strong>Create Workspace</strong></p>
+<p>Give permissions if required</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Next we are going to start a new Workspace where all the editing is done and we will initilize it with a DevFile.  A {https://devfile.io/}[DevFile] is a definition for environment, tooling, settings and runtimes for our development workspace. No more endless installations and configurations. We will be  ready to hack. Since a matching devfile is checked into out Git repo we can rerefence it directly.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Select <strong>Create Workspace</strong> in the left menu</p>
 </li>
 <li>
-<p>Enter <strong>Git Repo URL</strong> : <a href="https://gitea.apps.example.com/team-1/starter-app-python/raw/branch/master/devfile.yaml" class="bare">https://gitea.apps.example.com/team-1/starter-app-python/raw/branch/master/devfile.yaml</a></p>
+<p>Enter <strong>Git Repo URL</strong> :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">https://gitea.apps.example.com/team-1/starter-app-python/raw/branch/master/devfile.yaml</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -137,7 +165,7 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can find this url manually by opening to your Gitea <a href="https://gitea.apps.example.com" class="bare">https://gitea.apps.example.com</a>, navigate to the repo <code>starter-app-python</code> and the <code>devfile.yaml`</code>, then click on Originalversion / Raw and
+You can find the url to the DevFile manually by opening your Gitea <a href="https://gitea.apps.example.com" class="bare">https://gitea.apps.example.com</a>, navigate to the repo <code>starter-app-python</code> and then <code>devfile.yaml</code>. Click on Originalversion / Raw and
 copy the URL
 </td>
 </tr>
@@ -150,30 +178,87 @@ copy the URL
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Wait for the Workspace to depploy (this may take some time). Once you Workspace is up an running you should see a view that should look familiar if you have user VSCode.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/devspaces-create-workspace.png" alt="devspaces create workspace">
+</div>
 </div>
 <div class="paragraph">
-<p>We have prepared some sample code that you can use to quickly get started with your app. We will clone the repo next.
-* If you see a Popup asking you to trust the authors, accept this
-* On the left side click on <strong>Clone Repository</strong>
-* In the form at the top enter git url `https://gitea.apps.example.com/team-1/starter-app-python.git and hit <strong>Enter</strong>
-* In the next form keep the path as is ( /projects ) and hit <strong>Enter again</strong></p>
+<p>Wait for the Workspace to deploy (this may take some time). Once you Workspace is up an running you should see a view that looks familiar if you have user VSCode before.</p>
 </div>
 <div class="paragraph">
-<p>Now we will need to install a couple of dependecies with pip</p>
+<p>We have prepared some sample code that you can use to quickly get started with your app. We will clone the repo next.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Open a Terminal by clicking in “Hamburger Icon” &gt; <strong>Terminal</strong> &gt; <strong>New Terminal</strong> in the top left</p>
+<p>If you see a Popup asking you to "Do you trust the authors", click check <strong>Always &#8230;&#8203;</strong>  and click <strong>Yes &#8230;&#8203;</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/vscode-trust.png" alt="vscode trust">
+</div>
+</div>
+<div class="paragraph">
+<p>Next we will clone the starter code for our robot control app into our workspace.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the left side click on the button <strong>Clone Repository</strong></p>
+</li>
+<li>
+<p>In the form at the top enter the git url</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">https://gitea.apps.example.com/team-1/starter-app-python.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Hit <strong>Enter</strong></p>
+</li>
+<li>
+<p>In the next form keep the path as is ( /projects ) and hit <strong>Enter</strong> again</p>
+</li>
+<li>
+<p>In the next dialoge select <strong>Open</strong> to reopen the Browser tab in this project</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>In the terminal enter</p>
+<p>Your will see the starter code on the left side.</p>
 </div>
-<div class="listingblock">
+<div class="sect2">
+<h3 id="_start_the_app"><a class="anchor" href="#_start_the_app"></a>Start the App</h3>
+<div class="paragraph">
+<p>We will need to install a couple of python dependencies with pip.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open a Terminal by clicking the “Hamburger Icon” &gt; <strong>Terminal</strong> &gt; <strong>New Terminal</strong> in the top left</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the terminal enter :</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Depending on your browser you may need to allow pasting into the Terminal via a PopUp
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd starter-project-python
 pip install -r requirements.txt
@@ -183,50 +268,176 @@ gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Click on hint in the bottom right corner to expose the route
-Click on Open</p>
+<p><strong>Important</strong> : Once gunicorn is starting you will see two Popups in the bottom right corner that you will need to approve. These will publish a Route in OpenShift through which you can reach the website of your app running the the Workspace</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on the <strong>Yes</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/devspaces-allow_route.png" alt="devspaces allow route">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>*Openin new tab</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/devspaces-open-new-tab.png" alt="devspaces open new tab">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>*Open</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/devspaces-open-tab.png" alt="devspaces open tab">
+</div>
 </div>
 <div class="paragraph">
-<p>A Tab with the web interface of the app will open
-Make sure you are on http:// if the page does not open
-Curl Example:</p>
+<p>A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on http:// if the page does not open</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you have missed one of the PopUps, just stop a restart gunicorn with Strg-C and rerunning the last command.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>curl -X POST -v <a href="http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/backward/10?user_key=terminator" class="bare">http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/backward/10?user_key=terminator</a></p>
-</div>
-</div>
-</div>
-<h1 id="_to_get_an_image" class="sect0"><a class="anchor" href="#_to_get_an_image"></a>To get an Image:</h1>
-<div class="paragraph">
-<p>curl -X GET -v <a href="http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/camera?user_key=terminator" class="bare">http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/camera?user_key=terminator</a> | base64 -d &gt; image.jpg</p>
+<p>The Website features a <strong>Run</strong> button that you can use to excute your code.</p>
 </div>
 <div class="paragraph">
-<p>Edit the config.yaml to
-add your inferencing endpoint
-Your robot endpoint and token will be given to you</p>
+<p>Now let&#8217;s connect our app to the object detection service. Edit the <code>config.yaml</code> to add your inferencing endpoint that you created in the previous chapter</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ROBOT_API (Will be given to you )</p>
+</li>
+<li>
+<p>API_TOKEN (The name of your robot)</p>
+</li>
+<li>
+<p>INFERENCING_API (The Object Detection Service from the previous chapter)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>ROBOT_API = 'http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot'
-API_TOKEN = '' # terminator or abcwarrior
-INFERENCING_API = '' # Your cluster specific model serving url</p>
+<p>Next let&#8217;s write some code</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open the file <code>app.py</code> and look at the commented out code samples</p>
+</li>
+<li>
+<p>Start to code by writing a robot command to drive your robot forward a few units</p>
+</li>
+<li>
+<p>Call the run function by clicking on the <strong>Run</strong> button on the app website</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_robot_api"><a class="anchor" href="#_the_robot_api"></a>The Robot API</h3>
+<div class="paragraph">
+<p>The robot Restful API is fairly simple:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>POST /forward/&lt;length&gt;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Drive forward by length</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>POST /backward/&lt;length&gt;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Drive backwards by length</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>POST /left/&lt;degrees&gt;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Turn left by degrees</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>POST /right/&lt;degrees&gt;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Turn right by degrees</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>GET /image</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Returns a base64 image of the current camera image</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>In DevSpaces open app.py and look at the commented out code samples
-Start to code
-Call the run function by clicking on the start button on the app website</p>
+<p>For testing purposes you can call the Robot API directly from you Workspace Terminal with curl.</p>
 </div>
 <div class="paragraph">
-<p>Robot API
-POST /forward/&lt;length&gt;
-Vorwärts fahren um length
-POST /backward/&lt;length&gt;
-Rückwärts fahren um length
-POST /left/&lt;degrees&gt;
-Drehen nach links um degrees
-POST /right/&lt;degrees&gt;
-Drehen nach rechts um degrees
-GET /distance
-Ultraschallsensor : Entfernung zum nächsten Objekt in mm</p>
+<p>To drive forward 10 units call:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X POST -v http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/backward/10?user_key=terminator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To retrieve a camera image an save it:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">To get an Image:
+curl -X GET -v http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/camera?user_key=terminator | base64 -d &gt; image.jpg</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="data-science.html" class="query-params-link">0. Data Science</a></span>

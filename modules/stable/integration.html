@@ -108,7 +108,84 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Integration</h1>
-
+<div class="sect1">
+<h2 id="_the_challenge"><a class="anchor" href="#_the_challenge"></a>The Challenge</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The task that you are working on will be to enable your robot to identify a red fedora on the floor. Your robot should drive towards the fedora and stop shortly before it.</p>
+</div>
+<div class="paragraph">
+<p>The basic flow for your app will be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>retrieving an image</p>
+</li>
+<li>
+<p>sending it the object detection service</p>
+</li>
+<li>
+<p>analyzing the results</p>
+<div class="ulist">
+<ul>
+<li>
+<p>detected class</p>
+</li>
+<li>
+<p>confidence score</p>
+</li>
+<li>
+<p>coordinates of the bounding boxes in your camera image</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>working with the result to determine where the robot should move to next</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_collaboration"><a class="anchor" href="#_collaboration"></a>Collaboration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You will work collaboratively between dev and ml team to gradually optimize the behavior.</p>
+</div>
+<div class="paragraph">
+<p>Think about these points :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>How can I align the robot towards the fedora with the coordinate information</p>
+</li>
+<li>
+<p>How do I know when to stop the robot</p>
+</li>
+<li>
+<p>How can I optimize the "think" and "react" phases</p>
+</li>
+<li>
+<p>How can I handle corner cases</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_feature_freeze"><a class="anchor" href="#_feature_freeze"></a>Feature Freeze</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While you have time to develop your solution, as in real life projects there will be a "Feature Freeze" where everyting needs to be finished.  You will be given the time of the feature freeze.</p>
+</div>
+<div class="paragraph">
+<p>Your deliverable will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.</p>
+</div>
+</div>
+</div>
 <nav class="pagination">
   <span class="prev"><a href="development.html" class="query-params-link">1. Development</a></span>
   <span class="next"><a href="edge-devops.html" class="query-params-link">3. Edge DevOps</a></span>

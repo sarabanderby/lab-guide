@@ -108,6 +108,16 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Edge DevOps</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Testing our solution on OpenShift is fun but what we really want is an autonmous robot that can think for itself and find our fedora in the most disconnected of places.</p>
+</div>
+<div class="paragraph">
+<p>As you read in the last chapter at the "feature freeze" you will have to provide your solution assets in the form of container images.  It is time to move these onto the robot itself.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_todo_architecture_overview"><a class="anchor" href="#_todo_architecture_overview"></a>ToDo: Architecture overview</h2>
 <div class="sectionbody">
@@ -115,10 +125,13 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_build_container_image_with_the_model"><a class="anchor" href="#_build_container_image_with_the_model"></a>Build container image with the model</h2>
+<h2 id="_build_a_container_image_of_the_object_detection_model"><a class="anchor" href="#_build_a_container_image_of_the_object_detection_model"></a>Build a container image of the object detection model</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is important for the robot deployment later.</p>
+<p>Once we are finished with tuning our object detection model we will package it into a container image to de deployed on the robot.</p>
+</div>
+<div class="paragraph">
+<p>An OpenShift pipeline based on Tekton has been prepared for you</p>
 </div>
 <div class="ulist">
 <ul>
@@ -143,6 +156,30 @@
 <img src="_images/edge-devops/start-pipeline-2.png" alt="start pipeline 2">
 </div>
 </div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_a_container_image_of_the_application"><a class="anchor" href="#_build_a_container_image_of_the_application"></a>Build a container image of the application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When done with the app we will package in a Container Image as well. A matching pipeline is available as well.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login into the <a href="https://console-openshift-console.apps.example.com" target="_blank" rel="noopener">OpenShift Console</a> with username: team-1 and password : secret-password</p>
+</li>
+<li>
+<p>Go to <a href="https://console-openshift-console.apps.example.comk8s/ns/team-1-dev/tekton.dev" class="bare">https://console-openshift-console.apps.example.comk8s/ns/team-1-dev/tekton.dev</a><sub>v1</sub>Pipeline/app-build["Pipelines",window=_blank]</p>
+</li>
+<li>
+<p>Click on Actions &#8594; Start</p>
+</li>
+<li>
+<p>Click on Start to start the pipeline</p>
 </li>
 </ul>
 </div>
