@@ -125,7 +125,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_build_a_container_image_of_the_object_detection_model"><a class="anchor" href="#_build_a_container_image_of_the_object_detection_model"></a>Build a container image of the object detection model</h2>
+<h2 id="_build_a_container_image_of_the_object_detection_model"><a class="anchor" href="#_build_a_container_image_of_the_object_detection_model"></a>Build a Container Image of the Object Detection Model</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Once we are finished with tuning our object detection model we will package it into a container image to de deployed on the robot.</p>
@@ -162,26 +162,100 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_build_a_container_image_of_the_application"><a class="anchor" href="#_build_a_container_image_of_the_application"></a>Build a container image of the application</h2>
+<h2 id="_build_a_container_image_of_the_application"><a class="anchor" href="#_build_a_container_image_of_the_application"></a>Build a Container Image of the Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When done with the app we will package in a Container Image as well. A matching pipeline is available as well.</p>
+<p>When done with the app we will package it in a Container Image as well. A matching pipeline has been added to your template app repository. This pipeline is triggered by the creation of a Tag in Gitea. So once you are ready, all you need to do is create a Tag and the Pipeline will build and push the Image to the local OpenShift Registry.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Login into the <a href="https://console-openshift-console.apps.example.com" target="_blank" rel="noopener">OpenShift Console</a> with username: team-1 and password : secret-password</p>
+<p>Login into <a href="https://gitea.apps.example.com/team-1/starter-app-python">Gitea</a> with</p>
+<div class="ulist">
+<ul>
+<li>
+<p>username: team-1</p>
 </li>
 <li>
-<p>Go to <a href="https://console-openshift-console.apps.example.comk8s/ns/team-1-dev/tekton.dev" class="bare">https://console-openshift-console.apps.example.comk8s/ns/team-1-dev/tekton.dev</a><sub>v1</sub>Pipeline/app-build["Pipelines",window=_blank]</p>
-</li>
-<li>
-<p>Click on Actions &#8594; Start</p>
-</li>
-<li>
-<p>Click on Start to start the pipeline</p>
+<p>password : secret-password</p>
 </li>
 </ul>
+</div>
+</li>
+<li>
+<p>Click on <strong>Releases</strong></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/gitea-release.png" alt="gitea release">
+</div>
+</div>
+</li>
+<li>
+<p>Click on <strong>New Release</strong></p>
+</li>
+<li>
+<p>Enter a <strong>Tag name</strong> such as <code>Final Version</code></p>
+</li>
+<li>
+<p>Click on the butto <strong>Create Tag Only</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now you can go back to the OpenShift Console and click on <strong>Pipelines</strong> in the menu on the left. Make sure you are in the <strong>Project</strong> <code>team-1-dev</code>. You should see you Pipeline running.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_you_images_to_robot_with_gitops"><a class="anchor" href="#_deploy_you_images_to_robot_with_gitops"></a>Deploy you Images to Robot with GitOps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that we have the images we can deploy them to the robot.  Since the robots are running Microshift (a lightweight version of OpenShift) we can use consistent tooling to automate our Deployment. We will use <strong>OpenShift GitOps</strong> based on ArgoCD for this.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>OpenShift GitOps</strong> project has already been setup that listens to changes of a configuration repository. The microshift of your robot as been added as manged cluster so any change in the repo will be rolled out diretcly to your robot.</p>
+</div>
+<div class="paragraph">
+<p>Have a look at the Git repo : <a href="https://gitea.apps.example.com/team-1/robot-gitops" class="bare">https://gitea.apps.example.com/team-1/robot-gitops</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The object detection image needs to be set here:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml" class="bare">https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The app image needs to be set here:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml" class="bare">https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In real world projects, you would use a tool such as <strong>Kustomize</strong> to add modification layer without changing the actual deployment.yaml files
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you commit the changes <strong>OpenShift GitOps</strong> will start to work on the deployment. Keep an eye on the ArgoCD Console shown by facilitators.</p>
 </div>
 </div>
 </div>
