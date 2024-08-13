@@ -7,7 +7,7 @@ As you read in the last chapter at the "feature freeze" you will have to provide
 == ToDo: Architecture overview
 
 
-== Build a container image of the object detection model
+== Build a Container Image of the Object Detection Model
 
 Once we are finished with tuning our object detection model we will package it into a container image to de deployed on the robot.
 
@@ -25,14 +25,34 @@ image::edge-devops/start-pipeline.png[]
 +
 image::edge-devops/start-pipeline-2.png[]
 
-== Build a container image of the application
+== Build a Container Image of the Application
 
-When done with the app we will package in a Container Image as well. A matching pipeline is available as well.
+When done with the app we will package it in a Container Image as well. A matching pipeline has been added to your template app repository. This pipeline is triggered by the creation of a Tag in Gitea. So once you are ready, all you need to do is create a Tag and the Pipeline will build and push the Image to the local OpenShift Registry.
 
-- Login into the {openshift_console_url}["OpenShift Console",window=_blank] with username: {user} and password : {password}
+* Login into {gitea_console_url}/{user}/starter-app-python[Gitea] with
+** username: {user}
+** password : {password}
+* Click on **Releases**
++
+image::gitea-release.png[]
+* Click on **New Release**
+* Enter a **Tag name** such as `Final Version`
+* Click on the butto **Create Tag Only**
 
-- Go to {openshift_console_url}k8s/ns/{user}-dev/tekton.dev~v1~Pipeline/app-build["Pipelines",window=_blank]
+Now you can go back to the OpenShift Console and click on **Pipelines** in the menu on the left. Make sure you are in the **Project** `{user}-dev`. You should see you Pipeline running.
 
-- Click on Actions -> Start
-- Click on Start to start the pipeline
+== Deploy you Images to Robot with GitOps
+Now that we have the images we can deploy them to the robot.  Since the robots are running Microshift (a lightweight version of OpenShift) we can use consistent tooling to automate our Deployment. We will use **OpenShift GitOps** based on ArgoCD for this.
 
+A **OpenShift GitOps** project has already been setup that listens to changes of a configuration repository. The microshift of your robot as been added as manged cluster so any change in the repo will be rolled out diretcly to your robot.
+
+Have a look at the Git repo : {gitea_console_url}/{user}/robot-gitops
+
+* The object detection image needs to be set here:
+** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml
+* The app image needs to be set here:
+** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml
+
+TIP: In real world projects, you would use a tool such as **Kustomize** to add modification layer without changing the actual deployment.yaml files
+
+Once you commit the changes **OpenShift GitOps** will start to work on the deployment. Keep an eye on the ArgoCD Console shown by facilitators.

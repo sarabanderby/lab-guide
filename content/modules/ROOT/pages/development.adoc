@@ -94,9 +94,10 @@ The Website features a **Run** button that you can use to excute your code.
 
 Now let's connect our app to the object detection service. Edit the `config.yaml` to add your inferencing endpoint that you created in the previous chapter
 
-* ROBOT_API (Will be given to you )
-* API_TOKEN (The name of your robot)
+* ROBOT_API (Will be given to you)
+* ROBOT_NAME (The name of your Robot e.g. `terminator`)
 * INFERENCING_API (The Object Detection Service from the previous chapter)
+* INFERENCING_API (The Token of the Object Detection Service from the previous chapter)
 
 Next let's write some code
 
