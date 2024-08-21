@@ -161,7 +161,7 @@ image::copy-inference-url.png[]
 
 image::copy-token.png[]
 
-* Back in your JupyterLab Workbench in the `object-detection-notebooks` diretcory open the `online-scoring.ipynb` notebook
+* Back in your JupyterLab Workbench in the `object-detection-notebooks` directory open the `online-scoring.ipynb` notebook
 * Look for the variables `prediction_url` and `token` and paste the inference endpoint URL and the token into the placeholders
 
 * Run the full notebook (The button with the two play icons in the top menu)
@@ -169,7 +169,7 @@ image::copy-token.png[]
 
 You will see the identified classes with bounding boxes and confidence score
 
-TIP: You can test this with different images in the sample-images folder. You can even upload your own images. Take a picture with a camera from your laptop or smartphone and upload it into the `sample_images` folder.  Make sure you adjust the image name in cell [2] before running the notebook again.
+TIP: You can test this with different images in the sample-images folder. You can even upload your own images. Take a picture with a camera from your laptop or smartphone and upload it into the `sample_images` folder.  Make sure you adjust the image name in `image_path` variable before running the notebook again.
 
 Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
 

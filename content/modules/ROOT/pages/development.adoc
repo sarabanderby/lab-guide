@@ -97,7 +97,7 @@ Now let's connect our app to the object detection service. Edit the `config.yaml
 * ROBOT_API (Will be given to you)
 * ROBOT_NAME (The name of your Robot e.g. `terminator`)
 * INFERENCING_API (The Object Detection Service from the previous chapter)
-* INFERENCING_API (The Token of the Object Detection Service from the previous chapter)
+* INFERENCING_API_TOKEN (The Token of the Object Detection Service from the previous chapter)
 
 Next let's write some code
 
