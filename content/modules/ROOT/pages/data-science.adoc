@@ -83,7 +83,7 @@ names: ['Fedora', 'Ball', 'Tennis ball',]
 These image classes are mapped to the class numbers 0, 1, 2 accordingly.
 
 * Now back in the `model-training-pipeline`, on the top menu on the left click on the play icon
-
++
 image::start-pipeline.png[]
 
 * Keep the default settings and click on **OK**
@@ -91,10 +91,17 @@ image::start-pipeline.png[]
 This will submit the pipeline to OpenShift to run the training
 
 * Switch to the *OpenShift AI* tab in your browser
-* Expand the **Pipelines** section of your DataScience Project and you will see the Pipeline instance
+* Select your Data Science Project {user}-ai
+* Select **Pipelines** tab
+* Expand the **model-training-cpu** Pipeline
+* Click on the three dots at the end of line
 * Click on **View runs**
-
++
 image::view-runs.png[]
+
+* Click on **model-training-cpu-xxxxx** at the Run column
++ 
+image::view-runs2.png[]
 
 * Click on the currently running pipeline
 
@@ -114,7 +121,8 @@ You now have a trained model for object recognition. To use the model we will de
 First we need to configue a model server:
 
 * Click on **DataScience Projects** in the main menu on the left and make sure you have selected your project again
-*  Under the section **Models and model servers** click on **Add model server**
+* Select your Data Science Project {user}-ai
+* Under the section **Serve models** click on **Add model server**
 * Model server name :
 +
 [source,bash,role=execute,subs="attributes"]
@@ -132,7 +140,8 @@ image::serving-runtime.png[]
 
 === Deploy Model
 
-* Click **Deploy model** next to your just created model server
+* Click **Go to Models** next to your just created model server
+* Click **Deploy model**
 * In the form enter
 ** Model Name:
 +
@@ -172,4 +181,3 @@ You will see the identified classes with bounding boxes and confidence score
 TIP: You can test this with different images in the sample-images folder. You can even upload your own images. Take a picture with a camera from your laptop or smartphone and upload it into the `sample_images` folder.  Make sure you adjust the image name in `image_path` variable before running the notebook again.
 
 Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
-
