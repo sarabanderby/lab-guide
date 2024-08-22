@@ -117,7 +117,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>If you are not already logged into the OpenShift Console, Login in the <a href="https://console-openshift-console.apps.example.com">OpenShift Console</a> with:</p>
+<p>If you are not already logged in, login into the <a href="https://console-openshift-console.apps.example.com">OpenShift Console</a> with:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -141,7 +141,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Next we are going to start a new Workspace where all the editing is done and we will initilize it with a DevFile.  A (<a href="https://devfile.io/)">DevFile</a> is a definition for environment, tooling, settings and runtimes for our development workspace. No more endless installations and configurations. We will be  ready to hack. Since a matching devfile is checked into out Git repo we can rerefence it directly.</p>
+<p>Next we are going to start a new Workspace where all the editing is done and we will initialize it with a <strong>DevFile</strong>.  A <a href="https://devfile.io/">DevFile</a> is a definition for environment, tooling, settings and runtimes for our development workspace. No more endless installations and configurations. We will be  ready to hack right away. Since a matching <strong>DevFile</strong> is already checked into out Git repo, we can use it directly to initialize a workspace.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -234,6 +234,31 @@ copy the URL
 <div class="sect2">
 <h3 id="_start_the_app"><a class="anchor" href="#_start_the_app"></a>Start the App</h3>
 <div class="paragraph">
+<p>You have 2 options to run th app. You can either use a task that is defined in the <strong>DevFile</strong> and runs all the pip and python commands under the hood. Or you can open a terminal and run these commands yourself, to have full control.</p>
+</div>
+<div class="sect3">
+<h4 id="_option_1_starting_the_app_through_the_workspace_task"><a class="anchor" href="#_option_1_starting_the_app_through_the_workspace_task"></a>Option 1 : Starting the App through the Workspace Task</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>In the top left click on the "hamburger" menu &gt; <strong>Terminal</strong> &gt; <strong>Run Task &#8230;&#8203;</strong></p>
+</li>
+<li>
+<p>In the selection menu at the top, click on <strong>devfile</strong></p>
+</li>
+<li>
+<p>Then click on <strong>devfile: Run the app</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Thi will install the python dependencies and start the webserver of your app. Please proceed to chapter <strong>Open the App Website</strong></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_option_2_starting_the_app_from_the_terminal"><a class="anchor" href="#_option_2_starting_the_app_from_the_terminal"></a>Option 2: Starting the App from the Terminal</h3>
+<div class="paragraph">
 <p>We will need to install a couple of python dependencies with pip.</p>
 </div>
 <div class="ulist">
@@ -267,6 +292,9 @@ export PATH=$PATH:/home/user/.local/bin
 gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_open_the_app_website"><a class="anchor" href="#_open_the_app_website"></a>Open the App Website</h3>
 <div class="paragraph">
 <p><strong>Important</strong> : Once gunicorn is starting you will see two Popups in the bottom right corner that you will need to approve. These will publish a Route in OpenShift through which you can reach the website of your app running the the Workspace</p>
 </div>
@@ -316,13 +344,13 @@ gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you have missed one of the PopUps, just stop a restart gunicorn with Strg-C and rerunning the last command.
+If you have missed one of the PopUps, just stop and restart gunicorn with Strg-C and rerunning the last Task or command.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The Website features a <strong>Run</strong> button that you can use to excute your code.</p>
+<p>The website features a <strong>Run</strong> button that you can use to execute your code.</p>
 </div>
 <div class="paragraph">
 <p>Now let&#8217;s connect our app to the object detection service. Edit the <code>config.yaml</code> to add your inferencing endpoint that you created in the previous chapter</p>
@@ -423,7 +451,7 @@ If you have missed one of the PopUps, just stop a restart gunicorn with Strg-C a
 <p>For testing purposes you can call the Robot API directly from you Workspace Terminal with curl.</p>
 </div>
 <div class="paragraph">
-<p>To drive forward 10 units call:</p>
+<p>To drive forward 10 units, call:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
@@ -431,7 +459,7 @@ If you have missed one of the PopUps, just stop a restart gunicorn with Strg-C a
 </div>
 </div>
 <div class="paragraph">
-<p>To retrieve a camera image an save it:</p>
+<p>To retrieve a camera image and save it as a file:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">

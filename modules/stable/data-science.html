@@ -248,7 +248,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Click on the <strong>Open</strong> link, next to <code>fedora-detection</code> Workbench to open the JuypterLab Workbench</p>
+<p>Click on the <strong>Open</strong> link, next to the <code>fedora-detection</code> Workbench to open the JuypterLab Workbench</p>
 </li>
 <li>
 <p>Login with you OpenShift credentials and allow selected permissions</p>
@@ -278,12 +278,12 @@
 <p>Click on <strong>Clone</strong></p>
 </li>
 <li>
-<p>On the left side in the menu click on the <strong>Folder</strong> icon and navigate to ´object-detection-notebooks´ directory</p>
+<p>On the left side in the menu click on the <strong>Folder</strong> icon and navigate to <code>object-detection-notebooks</code> directory</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Next we will train a model on the basis of a Yolo4 Image Detection model to detect Fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of <strong>OpenShift AI</strong> and serve it to our application.</p>
+<p>Next we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of <strong>OpenShift AI</strong> and serve it to our application.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -303,7 +303,7 @@
 <p>Have a look at the pipeline steps: We are downloading sample images, preparing the labels and training sets, running the training, converting the model format to onnx and then uploading it to an S3 bucket.</p>
 </div>
 <div class="paragraph">
-<p>The pipeline can be configured to download and train on image object classes (e.g. Fedoras) from the frm the OpenImages website. To configure these classes open the file <code>configuration.yaml</code>. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.</p>
+<p>The pipeline can be configured to download and train on image object classes (e.g. Fedoras) from the from the OpenImages website. To configure these classes open the file <code>configuration.yaml</code>. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -388,7 +388,7 @@
 <p>Now is a good time to grab some coffee.</p>
 </div>
 <div class="paragraph">
-<p>Once the pipeline has run successfully the final model named <code>latest-version.onnx</code> will saved be in your S3 bucket.</p>
+<p>Once the pipeline has run successfully the final model named <code>latest-version.onnx</code> will be saved in your S3 bucket.</p>
 </div>
 </div>
 </div>
@@ -396,7 +396,7 @@
 <h2 id="_model_serving"><a class="anchor" href="#_model_serving"></a>Model Serving</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You now have a trained model for object recognition. To use the model we will deploy it into <strong>OpenShift AI</strong> Model Serving.</p>
+<p>You now have a trained model for object recognition. To use the model we will deploy it into <strong>OpenShift AI</strong> Model Serving, which will automatically publish and API.</p>
 </div>
 <div class="sect2">
 <h3 id="_model_runtime"><a class="anchor" href="#_model_runtime"></a>Model Runtime</h3>
@@ -505,7 +505,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Copy the inference endpoint URL that is published through a OpenShift Route</p>
+<p>Copy the inference endpoint URL that is published through an OpenShift Route</p>
 </li>
 </ul>
 </div>
@@ -529,7 +529,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Back in your JupyterLab Workbench in the <code>object-detection-notebooks</code> directory open the <code>online-scoring.ipynb</code> notebook</p>
+<p>Back in your JupyterLab Workbench in the <code>object-detection-notebooks</code> directory, open the <code>online-scoring.ipynb</code> notebook</p>
 </li>
 <li>
 <p>Look for the variables <code>prediction_url</code> and <code>token</code> and paste the inference endpoint URL and the token into the placeholders</p>
@@ -543,19 +543,10 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>You will see the identified classes with bounding boxes and confidence score</p>
+<p>You will see any identified classes with bounding boxes and confidence score. Bummer! As the sample image doesn&#8217;t have any fedoras you will not see any detections yet. Let&#8217;s give our more model some more interesting pictures.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can test this with different images in the sample-images folder. You can even upload your own images. Take a picture with a camera from your laptop or smartphone and upload it into the <code>sample_images</code> folder.  Make sure you adjust the image name in <code>image_path</code> variable before running the notebook again.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You can test your model with different images in the <code>sample-images</code> folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the <code>sample_images</code> folder.  Make sure you adjust the image name in <code>image_path</code> variable before running the notebook again. You should see awesome some detections now.</p>
 </div>
 <div class="paragraph">
 <p>Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
