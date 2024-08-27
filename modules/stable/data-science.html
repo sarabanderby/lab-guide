@@ -111,7 +111,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As Data Scientist our task will be to give our robot undestanding of what a red fedora looks like and how to identify one. You will train an existing object dection model (Yolo) on a set of images depicting fedoras. To achieve this we will use <strong>OpenShift AI</strong>, an extension to OpenShift that provides a platform for Data Scientist to work with the tools they are used to.</p>
+<p>As Data Scientist our task will be to give our robot understanding of what a red fedora looks like and how to identify one. You will train an existing object dection model (Yolo) on a set of images depicting fedoras. To achieve this we will use <strong>OpenShift AI</strong>, an extension to OpenShift that provides a platform for Data Scientist to work with the tools they are used to.</p>
 </div>
 </div>
 </div>
@@ -137,7 +137,7 @@
 </div>
 </li>
 <li>
-<p>Click on the top right menu with the squares and select <strong>OpenShift AI</strong> to go the the <strong>OpenShift AI Dashboard</strong></p>
+<p>Click on the top right menu with the squares and select <strong>OpenShift AI</strong> to access the <strong>OpenShift AI Dashboard</strong></p>
 </li>
 </ul>
 </div>
@@ -283,7 +283,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Next we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of <strong>OpenShift AI</strong> and serve it to our application.</p>
+<p>Next we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift ressource scaling. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of <strong>OpenShift AI</strong> and serve it to our application.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -303,7 +303,7 @@
 <p>Have a look at the pipeline steps: We are downloading sample images, preparing the labels and training sets, running the training, converting the model format to onnx and then uploading it to an S3 bucket.</p>
 </div>
 <div class="paragraph">
-<p>The pipeline can be configured to download and train on image object classes (e.g. Fedoras) from the from the OpenImages website. To configure these classes open the file <code>configuration.yaml</code>. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.</p>
+<p>The pipeline can be configured to download and train on image object classes (e.g. Fedoras) from the OpenImages website. To configure these classes open the file <code>configuration.yaml</code>. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -318,7 +318,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>These image classes are mapped to the class numbers 0, 1, 2 accordingly.</p>
+<p>These image classes are mapped to the class numbers 0, 1, 2 accordingly, press Ctrl-s to save your changes.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -396,7 +396,7 @@
 <h2 id="_model_serving"><a class="anchor" href="#_model_serving"></a>Model Serving</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You now have a trained model for object recognition. To use the model we will deploy it into <strong>OpenShift AI</strong> Model Serving, which will automatically publish and API.</p>
+<p>You now have a trained model for object recognition. To use the model we will deploy it into <strong>OpenShift AI</strong> Model Serving, which will make it available via an API.</p>
 </div>
 <div class="sect2">
 <h3 id="_model_runtime"><a class="anchor" href="#_model_runtime"></a>Model Runtime</h3>
