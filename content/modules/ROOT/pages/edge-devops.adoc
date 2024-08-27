@@ -15,7 +15,7 @@ An OpenShift pipeline based on Tekton has been prepared for you
 
 - Login into the {openshift_console_url}["OpenShift Console",window=_blank] with username: {user} and password : {password}
 
-- Go to {openshift_console_url}k8s/ns/{user}-ai/tekton.dev~v1~Pipeline/model-image-build["Pipelines",window=_blank]
+- Go to {openshift_console_url}k8s/ns/{user}-ai/tekton.dev\~v1~Pipeline/model-image-build["Pipelines",window=_blank]
 
 - Click on Actions -> Start
 +
