@@ -300,10 +300,35 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Have a look at the pipeline steps: We are downloading sample images, preparing the labels and training sets, running the training, converting the model format to onnx and then uploading it to an S3 bucket.</p>
+<p>Have a look at the pipeline steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We are downloading a set of sample images with labels and coordinates for our classes from the <a href="https://storage.googleapis.com/openimages/web/index.html">OpenImages website</a>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/open-images.png" alt="open images">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Preparing the class labels and training sets</p>
+</li>
+<li>
+<p>Running the actual training on a Yolo 5 Model</p>
+</li>
+<li>
+<p>Converting the model format to onnx and then uploading it to an ODF S3 bucket</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The pipeline can be configured to download and train on image object classes (e.g. Fedoras) from the OpenImages website. To configure these classes open the file <code>configuration.yaml</code>. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.</p>
+<p>The pipeline can be configured to download and train on specifc image object classes (e.g. Fedoras). To configure these classes open the file <code>configuration.yaml</code>. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -549,7 +574,10 @@
 <p>You can test your model with different images in the <code>sample-images</code> folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the <code>sample_images</code> folder.  Make sure you adjust the image name in <code>image_path</code> variable before running the notebook again. You should see awesome some detections now.</p>
 </div>
 <div class="paragraph">
-<p>Now it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
+<p>Perhaps you would to like to tweak and increase the detection quality of your model. You can rerun the Pipeline and increase the Sample Size (Number of Images used for training) and epochs (Number of training iterations).</p>
+</div>
+<div class="paragraph">
+<p>Finally it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
 </div>
 </div>
 </div>
