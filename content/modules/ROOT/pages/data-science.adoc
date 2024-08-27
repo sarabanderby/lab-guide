@@ -1,7 +1,7 @@
 
 = Data Science
 
-As Data Scientist our task will be to give our robot undestanding of what a red fedora looks like and how to identify one. You will train an existing object dection model (Yolo) on a set of images depicting fedoras. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientist to work with the tools they are used to.
+As Data Scientist our task will be to give our robot understanding of what a red fedora looks like and how to identify one. You will train an existing object dection model (Yolo) on a set of images depicting fedoras. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientist to work with the tools they are used to.
 
 == Instantiate Workbench
 
@@ -10,7 +10,7 @@ Let's login into **OpenShift AI**
 * Login into the {openshift_console_url}[OpenShift Console] with:
 ** username: {user}
 ** password : {password}
-* Click on the top right menu with the squares and select **OpenShift AI** to go the the **OpenShift AI Dashboard**
+* Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
 
 image::rhoai-menu.png[]
 
@@ -64,14 +64,14 @@ In JuypterLab we are going to clone some JuypterNotebooks to get started with ou
 * Click on **Clone**
 * On the left side in the menu click on the **Folder** icon and navigate to `object-detection-notebooks` directory
 
-Next we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging scaling OpenShift ressources. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of **OpenShift AI** and serve it to our application.
+Next we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift ressource scaling. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of **OpenShift AI** and serve it to our application.
 
 * In JupyterLab navigate to the directory ´object-detection-notebooks/model-training´
 - Open `model-training-cpu.pipeline`
 
 Have a look at the pipeline steps: We are downloading sample images, preparing the labels and training sets, running the training, converting the model format to onnx and then uploading it to an S3 bucket.
 
-The pipeline can be configured to download and train on image object classes (e.g. Fedoras) from the from the OpenImages website. To configure these classes open the file `configuration.yaml`. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.
+The pipeline can be configured to download and train on image object classes (e.g. Fedoras) from the OpenImages website. To configure these classes open the file `configuration.yaml`. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.
 
 * Change the `names` array to look like this
 
@@ -80,7 +80,7 @@ The pipeline can be configured to download and train on image object classes (e.
 names: ['Fedora', 'Ball', 'Tennis ball',]
 ----
 
-These image classes are mapped to the class numbers 0, 1, 2 accordingly.
+These image classes are mapped to the class numbers 0, 1, 2 accordingly, press Ctrl-s to save your changes.
 
 * Now back in the `model-training-pipeline`, on the top menu on the left click on the play icon
 +
@@ -114,7 +114,7 @@ Now is a good time to grab some coffee.
 Once the pipeline has run successfully the final model named `latest-version.onnx` will be saved in your S3 bucket.
 
 == Model Serving
-You now have a trained model for object recognition. To use the model we will deploy it into **OpenShift AI** Model Serving, which will automatically publish and API.
+You now have a trained model for object recognition. To use the model we will deploy it into **OpenShift AI** Model Serving, which will make it available via an API.
 
 === Model Runtime
 
@@ -166,6 +166,7 @@ Wait for the server to start
 * Copy the inference endpoint URL that is published through an OpenShift Route
 
 image::copy-inference-url.png[]
+
 * Copy the token of the endpoint
 
 image::copy-token.png[]
