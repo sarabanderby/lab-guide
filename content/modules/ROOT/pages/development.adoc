@@ -30,7 +30,7 @@ copy the URL
 
 image::devspaces-create-workspace.png[]
 
-Wait for the Workspace to deploy (this may take some time). Once you Workspace is up an running you should see a view that looks familiar if you have user VSCode before.
+Wait for the Workspace to deploy (this may take some time). Once you Workspace is up an running you should see a view that looks familiar if you have used VSCode before.
 
 We have prepared some sample code that you can use to quickly get started with your app. We will clone the repo next.
 
@@ -61,9 +61,9 @@ You have 2 options to run th app. You can either use a task that is defined in t
 
 * In the top left click on the "hamburger" menu > **Terminal** > **Run Task ...**
 * In the selection menu at the top, click on **devfile**
-* Then click on **devfile: Run the app**
+* Then click on **devfile: Run the application**
 
-Thi will install the python dependencies and start the webserver of your app. Please proceed to chapter **Open the App Website**
+This will install the python dependencies and start the webserver of your app. Please proceed to chapter **Open the App Website**
 
 
 === Option 2: Starting the App from the Terminal
@@ -89,11 +89,11 @@ gunicorn -b 0.0.0.0:8080 app --reload
 
 **Important** : Once gunicorn is starting you will see two Popups in the bottom right corner that you will need to approve. These will publish a Route in OpenShift through which you can reach the website of your app running the the Workspace
 
-* Click on the **Yes**
+* Click on **Yes**
 
 image::devspaces-allow_route.png[]
 
-* Click on **Openin new tab*
+* Click on **Open in new tab**
 
 image::devspaces-open-new-tab.png[]
 
