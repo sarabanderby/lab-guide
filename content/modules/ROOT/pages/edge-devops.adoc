@@ -50,8 +50,10 @@ Have a look at the Git repo : {gitea_console_url}/{user}/robot-gitops
 
 * The object detection image needs to be set here:
 ** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml
+** The built image will be available here : `default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}/model-container:latest`
 * The app image needs to be set here:
 ** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml
+** The built Image will be available here `default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}-dev/starter-app-python:v1`
 
 TIP: In real world projects, you would use a tool such as **Kustomize** to add modification layer without changing the actual deployment.yaml files
 
