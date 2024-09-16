@@ -107,12 +107,14 @@ TIP: If you have missed one of the PopUps, just stop and restart gunicorn with S
 
 The website features a **Run** button that you can use to execute your code.
 
-Now let's connect our app to the object detection service. Edit the `config.yaml` to add your inferencing endpoint that you created in the previous chapter
+Now let's connect our app to the object detection service. Edit the `config.yaml` to add your inferencing endpoint that you created in the previous chapter.
 
-* ROBOT_API (Will be given to you)
-* ROBOT_NAME (The name of your Robot e.g. `terminator`)
-* INFERENCING_API (The Object Detection Service from the previous chapter)
-* INFERENCING_API_TOKEN (The Token of the Object Detection Service from the previous chapter)
+Replace the following placeholders:
+
+* <REPLACE_WITH_ROBOT_API> (Will be given to you)
+* <REPLACE_WITH_ROBOT_NAME> (The name of your Robot e.g. `terminator`)
+* <REPLACE_WITH_INFERENCING_API> (The Object Detection Service from the previous chapter)
+* <REPLACE_WITH_INFERENCING_API_TOKEN> (The Token of the Object Detection Service from the previous chapter)
 
 Next let's write some code
 
