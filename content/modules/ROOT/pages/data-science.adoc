@@ -7,7 +7,7 @@ As Data Scientist our task will be to give our robot understanding of what a red
 
 Let's login into **OpenShift AI**
 
-* Login into the {openshift_console_url}[OpenShift Console] with:
+* Login into the {openshift_console_url}[OpenShift Console,window=_blank] with:
 ** username: {user}
 ** password : {password}
 * Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
@@ -71,7 +71,7 @@ Next we will train a model on the basis of a Yolo4 Image Detection model to iden
 
 Have a look at the pipeline steps:
 
-* We are downloading a set of sample images with labels and coordinates for our classes from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website].
+* We are downloading a set of sample images with labels and coordinates for our classes from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website,window=_blank].
 
 image::open-images.png[]
 
