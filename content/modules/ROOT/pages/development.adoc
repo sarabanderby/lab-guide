@@ -111,10 +111,25 @@ Now let's connect our app to the object detection service. Edit the `config.yaml
 
 Replace the following placeholders:
 
-* <REPLACE_WITH_ROBOT_API> : `http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot`
-* <REPLACE_WITH_ROBOT_NAME> : The lowercase name of your Robot e.g. `terminator`
-* <REPLACE_WITH_INFERENCING_API> (The Object Detection Service from the previous chapter)
-* <REPLACE_WITH_INFERENCING_API_TOKEN> (The Token of the Object Detection Service from the previous chapter)
+* **<REPLACE_WITH_ROBOT_API>** :
++
+[source,bash,role=execute,subs="attributes"]
+----
+http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot
+----
+* **<REPLACE_WITH_ROBOT_NAME>** : 
++
+[source,bash,role=execute,subs="attributes"]
+----
+include::partial${user}.adoc[]
+----
+
+* **<REPLACE_WITH_INFERENCING_API>**
++
+(The Object Detection Service from the previous chapter)
+* **<REPLACE_WITH_INFERENCING_API_TOKEN>**
++
+(The Token of the Object Detection Service from the previous chapter)
 
 Next let's write some code
 
@@ -147,13 +162,17 @@ To drive forward 10 units, call:
 
 [source,bash,role=execute]
 ----
-curl -X POST -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/backward/10?user_key=<REPLACE_WITH_USER_KEY>
+include::partial$export-{user}.adoc[]
+
+curl -X POST -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/backward/10?user_key=${ROBOT_NAME}
 ----
 
 To retrieve a camera image and save it as a file:
 
 [source,bash,role=execute]
 ----
-curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/camera?user_key=<REPLACE_WITH_USER_KEY> | base64 -d > image.jpg
+include::partial$export-{user}.adoc[]
+
+curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/camera?user_key=${ROBOT_NAME} | base64 -d > image.jpg
 ----
 
