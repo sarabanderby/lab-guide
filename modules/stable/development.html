@@ -361,10 +361,10 @@ If you have missed one of the PopUps, just stop and restart gunicorn with Strg-C
 <div class="ulist">
 <ul>
 <li>
-<p>&lt;REPLACE_WITH_ROBOT_API&gt; (Will be given to you)</p>
+<p>&lt;REPLACE_WITH_ROBOT_API&gt; : <code><a href="http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot" class="bare">http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot</a></code></p>
 </li>
 <li>
-<p>&lt;REPLACE_WITH_ROBOT_NAME&gt; (The name of your Robot e.g. <code>terminator</code>)</p>
+<p>&lt;REPLACE_WITH_ROBOT_NAME&gt; : The lowercase name of your Robot e.g. <code>terminator</code></p>
 </li>
 <li>
 <p>&lt;REPLACE_WITH_INFERENCING_API&gt; (The Object Detection Service from the previous chapter)</p>
@@ -448,17 +448,37 @@ If you have missed one of the PopUps, just stop and restart gunicorn with Strg-C
 </ul>
 </div>
 </li>
+<li>
+<p>GET /status</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Returns the status of the robot</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>GET /power</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Returns the current power of the robot</p>
+</li>
+</ul>
+</div>
+</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For testing purposes you can call the Robot API directly from you Workspace Terminal with curl.</p>
+<p>For testing purposes you can call the Robot API directly from you Workspace Terminal with curl. Make sure to replace &lt;REPLACE_WITH_USER_KEY&gt; with your Robot name.</p>
 </div>
 <div class="paragraph">
 <p>To drive forward 10 units, call:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X POST -v http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/backward/10?user_key=terminator</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X POST -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/backward/10?user_key=&lt;REPLACE_WITH_USER_KEY&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -466,8 +486,7 @@ If you have missed one of the PopUps, just stop and restart gunicorn with Strg-C
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">To get an Image:
-curl -X GET -v http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/camera?user_key=terminator | base64 -d &gt; image.jpg</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/camera?user_key=&lt;REPLACE_WITH_USER_KEY&gt; | base64 -d &gt; image.jpg</code></pre>
 </div>
 </div>
 </div>
