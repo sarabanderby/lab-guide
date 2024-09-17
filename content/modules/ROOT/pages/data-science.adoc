@@ -85,7 +85,7 @@ The pipeline can be configured to download and train on specifc image object cla
 
 [source,yaml,role=execute,subs="attributes"]
 ----
-names: ['Fedora', 'Ball', 'Tennis ball',]
+names: ['Fedora',]
 ----
 
 These image classes are mapped to the class numbers 0, 1, 2 accordingly, press Ctrl-s to save your changes.

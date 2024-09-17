@@ -107,7 +107,7 @@ TIP: If you have missed one of the PopUps, just stop and restart gunicorn with S
 
 The website features a **Run** button that you can use to execute your code.
 
-Now let's connect our app to the object detection service. Edit the `config.yaml` to add your inferencing endpoint that you created in the previous chapter.
+Now let's connect our app to the object detection service. Edit the `config.py` to add your inferencing endpoint that you created in the previous chapter.
 
 Replace the following placeholders:
 
