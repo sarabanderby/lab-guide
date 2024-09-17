@@ -111,8 +111,8 @@ Now let's connect our app to the object detection service. Edit the `config.yaml
 
 Replace the following placeholders:
 
-* <REPLACE_WITH_ROBOT_API> (Will be given to you)
-* <REPLACE_WITH_ROBOT_NAME> (The name of your Robot e.g. `terminator`)
+* <REPLACE_WITH_ROBOT_API> : `http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot`
+* <REPLACE_WITH_ROBOT_NAME> : The lowercase name of your Robot e.g. `terminator`
 * <REPLACE_WITH_INFERENCING_API> (The Object Detection Service from the previous chapter)
 * <REPLACE_WITH_INFERENCING_API_TOKEN> (The Token of the Object Detection Service from the previous chapter)
 
@@ -136,20 +136,24 @@ The robot Restful API is fairly simple:
 ** Turn right by degrees
 * GET /image
 ** Returns a base64 image of the current camera image
+* GET /status
+** Returns the status of the robot
+* GET /power
+** Returns the current power of the robot
 
-For testing purposes you can call the Robot API directly from you Workspace Terminal with curl.
+For testing purposes you can call the Robot API directly from you Workspace Terminal with curl. Make sure to replace <REPLACE_WITH_USER_KEY> with your Robot name.
 
 To drive forward 10 units, call:
 
 [source,bash,role=execute]
 ----
-curl -X POST -v http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/backward/10?user_key=terminator
+curl -X POST -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/backward/10?user_key=<REPLACE_WITH_USER_KEY>
 ----
 
 To retrieve a camera image and save it as a file:
+
 [source,bash,role=execute]
 ----
-To get an Image:
-curl -X GET -v http://hub-controller-live.at-the-edge.svc.cluster.local:8080/api/robot/camera?user_key=terminator | base64 -d > image.jpg
+curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/camera?user_key=<REPLACE_WITH_USER_KEY> | base64 -d > image.jpg
 ----
 
