@@ -1,7 +1,7 @@
 
 = Data Science
 
-As Data Scientist our task will be to give our robot understanding of what a red fedora looks like and how to identify one. You will train an existing object dection model (Yolo) on a set of images depicting fedoras. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientist to work with the tools they are used to.
+As data scientists, we have been given a task to provide a robot the understanding of what a red fedora looks like, correctly identify it and act on the object detection. You will be fine tuning an already existing object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries
 
 == Instantiate Workbench
 
@@ -23,7 +23,7 @@ The is the main Console where all DataScience related projects and assets are ma
 - A project has already been prepared for you to work in
 - Click on the project `{user}-ai`
 
-As a true DataScientist we want to use JuypterLab to work on our prediction model. Let's create a new JupyterLab Workbench in our project:
+As data scientists, we are need of an interactive developement environment(IDE) to do our programming. One of the most common one(and provided by OpenShift AI) is JupyterLab. Let's create a new JupyterLab Workbench in our data science project and get started:
 
 * Click on **Create Workbench**
 * Enter these fields :
@@ -35,6 +35,7 @@ fedora-detection
 ----
 
 ** Image selection: `Object Detection`
+** Deployment size: 'Small'
 ** Cluster storage
 *** Create new persistent storage:
 **** Name : `fedora-detection`
@@ -43,14 +44,14 @@ fedora-detection
 **** Use existing data connection: `workbench-bucket`
 * Click **Create Workbench**
 
-Wait until the **Status** of the Workbench is shown as running
+Wait until the **Status** of the Workbench is changed from "Starting" to "Running"
 
 image::workbench-running.png[]
 
 * Click on the **Open** link, next to the `fedora-detection` Workbench to open the JuypterLab Workbench
 * Login with you OpenShift credentials and allow selected permissions
 
-In JuypterLab we are going to clone some JuypterNotebooks to get started with our ObjectDetection project:
+The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But dont worry, we are experienced data scientists that know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
 
 * In the menu on the left, click on the **Git** icon
 * Click on **Clone a Repository**
@@ -64,14 +65,14 @@ In JuypterLab we are going to clone some JuypterNotebooks to get started with ou
 * Click on **Clone**
 * On the left side in the menu click on the **Folder** icon and navigate to `object-detection-notebooks` directory
 
-Next we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift ressource scaling. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service of **OpenShift AI** and serve it to our application.
+Next, we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift ressource scaling. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
-* In JupyterLab navigate to the directory `object-detection-notebooks/model-training`
-- Open `model-training-cpu.pipeline`
+In JupyterLab navigate to the directory `object-detection-notebooks/model-training`. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a configuration.yaml file as well as pipeline definition itself. By clicking on the different script, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so lets open it: 
+* Double click on `model-training-cpu.pipeline`
 
 Have a look at the pipeline steps:
 
-* We are downloading a set of sample images with labels and coordinates for our classes from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website,window=_blank].
+* We are downloading a set of sample images with labels and coordinates for our fedora class from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website,window=_blank].
 
 image::open-images.png[]
 
@@ -79,7 +80,7 @@ image::open-images.png[]
 * Running the actual training on a Yolo 5 Model
 * Converting the model format to onnx and then uploading it to an ODF S3 bucket
 
-The pipeline can be configured to download and train on specifc image object classes (e.g. Fedoras). To configure these classes open the file `configuration.yaml`. You will see some classes have already been set ('Laptop', 'Computer keyboard', 'Table'). We will change these to detect the objects we are looking for.
+The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras). To configure a class, open the file called `configuration.yaml`. You will see there is a class already defined ('Laptop',). We will change this class to the object we are looking for.
 
 * Change the `names` array to look like this
 
@@ -88,7 +89,7 @@ The pipeline can be configured to download and train on specifc image object cla
 names: ['Fedora',]
 ----
 
-These image classes are mapped to the class numbers 0, 1, 2 accordingly, press Ctrl-s to save your changes.
+This image class is mapped to the class number 0, press Ctrl-s to save your changes.
 
 * Now back in the `model-training-pipeline`, on the top menu on the left click on the play icon
 +
@@ -117,7 +118,8 @@ This will show the running steps of the pipeline
 
 image::running-pipeline.png[]
 
-Now is a good time to grab some coffee.
+Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the Yolov5 model family https://docs.ultralytics.com/models/yolov5/ 
+There are different sizing versions of the Yolov5 and compute requirements. In the model_training.py you can find which one is being used. 
 
 Once the pipeline has run successfully the final model named `latest-version.onnx` will be saved in your S3 bucket.
 
@@ -128,7 +130,7 @@ You now have a trained model for object recognition. To use the model we will de
 
 First we need to configue a model server:
 
-* Click on **DataScience Projects** in the main menu on the left and make sure you have selected your project again
+* Click on **Data Science Projects** in the main menu on the left and make sure you have selected your project again
 * Select your Data Science Project {user}-ai
 * Under the section **Serve models** click on **Add model server**
 * Model server name :
@@ -189,6 +191,6 @@ You will see any identified classes with bounding boxes and confidence score. Bu
 
 You can test your model with different images in the `sample-images` folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the `sample_images` folder.  Make sure you adjust the image name in `image_path` variable before running the notebook again. You should see awesome some detections now.
 
-Perhaps you would to like to tweak and increase the detection quality of your model. You can rerun the Pipeline and increase the Sample Size (Number of Images used for training) and epochs (Number of training iterations).
+Perhaps you would to like to tweak and increase the detection quality of your model? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training) and epochs (Number of training iterations).
 
 Finally it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
