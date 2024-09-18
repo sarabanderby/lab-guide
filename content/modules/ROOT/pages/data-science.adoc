@@ -65,7 +65,7 @@ The first thing we notice when logging into our workbench is that it's quite emp
 * Click on **Clone**
 * On the left side in the menu click on the **Folder** icon and navigate to `object-detection-notebooks` directory
 
-Next, we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift ressource scaling. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
+Next, we will train a model on the basis of a Yolo5 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift ressource scaling. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
 In JupyterLab navigate to the directory `object-detection-notebooks/model-training`. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a configuration.yaml file as well as pipeline definition itself. By clicking on the different script, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so lets open it: 
 * Double click on `model-training-cpu.pipeline`
